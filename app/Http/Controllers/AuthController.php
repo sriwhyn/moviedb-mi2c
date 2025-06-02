@@ -24,13 +24,16 @@ class AuthController extends Controller
         );
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect('/')->with('success', 'Login Successfully', 'Welcome' .Auth::user()->name);
         }
 
         return back()->withErrors([
             'email' => 'Email Not Found'
         ])->onlyInput('email');
+
+
     }
+    
 
     public function logout(Request $request): RedirectResponse
     {
