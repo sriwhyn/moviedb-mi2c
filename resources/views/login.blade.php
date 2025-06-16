@@ -1,15 +1,16 @@
-@extends('layout.template')
+@extends('layouts.template')
 
 @section('content')
 <div class="row">
     <div class="col-lg-4">
         <h1>Login Form</h1>
-        @if ( $errors->any())
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            {{ $errors->first('email') }}
-            <!-- <strong>Holy guacamole!</strong> You should check in on some of those fields below. -->
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        @if ($errors->any())
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ $errors->first('email') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+        
         @endif
         <form method="post" action="/login">
             @csrf
@@ -27,7 +28,7 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
-                <button type="submit" class="btn btn-info">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             </form>
         </form>
     </div>

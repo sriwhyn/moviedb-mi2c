@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
-
 use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\Paginator as PaginationPaginator;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,5 +22,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
+        //gate atau policy untuk delete
+        Gate::define('delete', function($user) {
+            return $user->role === 'admin';
+        });
     }
 }
